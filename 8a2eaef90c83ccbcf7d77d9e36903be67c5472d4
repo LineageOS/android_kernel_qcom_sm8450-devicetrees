@@ -34,6 +34,24 @@
       "parentUuid": "db2bc6f6_740ea523",
       "revId": "8a2eaef90c83ccbcf7d77d9e36903be67c5472d4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e142ac69_9a2a7108",
+        "filename": "qcom/waipio.dtsi",
+        "patchSetId": 1
+      },
+      "lineNbr": 3409,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2024-12-19T22:51:23Z",
+      "side": 1,
+      "message": "It can be reverted in the downstream kernels if needed by specific devices.",
+      "parentUuid": "74464044_2be248dc",
+      "revId": "8a2eaef90c83ccbcf7d77d9e36903be67c5472d4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
