@@ -16,6 +16,24 @@
       "message": "This might need new firmware:\n`[    7.305237] qcom_q6v5_pas 4080000.remoteproc-mss: fatal error received: ipa_ipfltr.c:961:IPA Assert: IPA_SMEM_ALLOC_EX(smem_param) \u003d\u003d SMEM_STATUS_SUCCESS failed: ipa_ipfltri_sys_mem_init:shared memory allocation failure of size 45056`",
       "revId": "8a2eaef90c83ccbcf7d77d9e36903be67c5472d4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74464044_2be248dc",
+        "filename": "qcom/waipio.dtsi",
+        "patchSetId": 1
+      },
+      "lineNbr": 3409,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-12-19T18:05:54Z",
+      "side": 1,
+      "message": "I don\u0027t see any fatals on ingot.",
+      "parentUuid": "db2bc6f6_740ea523",
+      "revId": "8a2eaef90c83ccbcf7d77d9e36903be67c5472d4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
