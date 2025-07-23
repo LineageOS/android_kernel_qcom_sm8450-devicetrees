@@ -285,7 +285,7 @@ dtb-$(CONFIG_ARCH_DIWALI) += diwali-rumi.dtb \
 	diwali-lte-idp-usbc.dtb \
 	diwali-lte-idp-hsp.dtb \
 	diwali-lte-idp-nopmi.dtb \
-	diwali-lte-qrd-nopmi.dtbi \
+	diwali-lte-qrd-nopmi.dtb \
 	diwali-lte-qrd-pm8350b.dtb
 endif
 
@@ -535,7 +535,6 @@ dtb-$(CONFIG_ARCH_PARROT) += parrot-rumi.dtb \
 endif
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
-	dtbo-$(CONFIG_ARCH_HOLI) +=  holi-rumi-overlay.dtbo
 dtbo-$(CONFIG_ARCH_HOLI) += holi-rumi-overlay.dtbo \
 	holi-mtp-overlay.dtbo \
 	holi-cdp-overlay.dtbo \
