@@ -257,6 +257,20 @@ properties:
        Boolean property to decide whether
        platform name required.
 
+   fig-direct-cx:
+     description: |
+       Boolean property to decide whether chip is fig before device id is
+       determined during PCIe enumeration.
+
+   cx-mode:
+     description: |
+       Indicates the required method to handle the CX rail.
+
+   cnss-direct-cx-host-sol-init-gpio:
+     description: |
+       Repurposed Host SOL GPIO pin to be used during power on and
+       power off for fig.
+
    chip_cfg@X:
      description: represent chip specific configurations
      enum:

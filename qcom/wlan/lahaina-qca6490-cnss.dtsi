@@ -20,6 +20,7 @@
 		qcom,wlan;
 		qcom,wlan-ramdump-dynamic = <0x420000>;
 		qcom,wlan-cbc-enabled;
+		use-pm-domain;
 
 		vdd-wlan-aon-supply = <&S7B>;
 		qcom,vdd-wlan-aon-config = <950000 952000 0 0 1>;
