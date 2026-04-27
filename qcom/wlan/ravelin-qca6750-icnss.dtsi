@@ -7,7 +7,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 &reserved_memory {
-	wlan_msa_mem: wlan_msa_mem_region@82a00000 {
+	ravelin_qca6750_msa_mem: wlan_msa_mem_region@82a00000 {
 		no-map;
 		reg = <0x0 0x82a00000 0x0 0xc00000>;
 		status = "ok";
@@ -80,7 +80,7 @@
 		qcom,iommu-dma = "fastmap";
 		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
 		qcom,iommu-geometry = <0xa0000000 0x10010000>;
-		qcom,wlan-msa-fixed-region = <&wlan_msa_mem>;
+		qcom,wlan-msa-fixed-region = <&ravelin_qca6750_msa_mem>;
 		qcom,cmd_db_name = "smpb7";
 		cnss-daemon-support;
 		dma-coherent;

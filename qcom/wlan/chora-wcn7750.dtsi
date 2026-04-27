@@ -5,6 +5,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,chora.h>
 
 &tlmm {
 	icnss_sw_ctrl: icnss_sw_ctrl {
@@ -45,13 +46,13 @@
 
 &soc {
 	qcom,smp2p-wpss {
-		smp2p_wlan_1_in: qcom,smp2p-wlan-1-in {
+		chora_wcn7750_smp2p_wlan_1_in: qcom,smp2p-wlan-1-in {
 			qcom,entry-name = "wlan";
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
 
-		smp2p_wlan_1_out: qcom,smp2p-wlan-1-out {
+		chora_wcn7750_smp2p_wlan_1_out: qcom,smp2p-wlan-1-out {
 			qcom,entry-name = "wlan";
 			#qcom,smem-state-cells = <1>;
 		};
@@ -91,10 +92,11 @@
 		reg-names = "msi_addr", "smmu_iova_ipa";
 		qcom,rproc-handle = <&wpss_pas>;
 		iommus = <&apps_smmu 0x0c00 0x1>;
-		wlan-en-gpio =<41>;
-		host-sol-gpio =<42>;
-		dev-sol-gpio =<43>;
-		sw-ctrl-gpio =<40>;
+		wlan-en-gpio = <41 0 0 0 2 0 1 4 0 0 1 255 0 0 1 1>;
+		bt-en-gpio = <2 1 2 1 2 0 1 4 0 0 0 255 0 0 1 1>;
+		host-sol-gpio = <42 2 0 0 5 0 1 4 0 0 1 255 0 0 1 1>;
+		dev-sol-gpio = <43 3 0 0 2 0 1 4 0 0 1 4 1 0 1 1>;
+		sw-ctrl-gpio = <40 4 0 0 2 0 1 4 0 0 1 255 0 0 1 1>;
 		/* List of GPIOs to be setup for interrupt wakeup capable */
 		mpm_wake_set_gpios = <40>;
 		pin_wlan-en-gpio = <&tlmm 41 0>;
@@ -157,10 +159,10 @@
 		qcom,vdd-1.8-io-config = <1800000 1800000 0 0 0>;
 		vdd-1.2-io-supply = <&L9F>;
 		qcom,vdd-1.2-io-config = <1200000 1200000 0 0 0>;
-		vdd-2p2-supply = <&S6B>;
-		qcom,vdd-2p2-config = <2200000 2200000 0 0 0>;
+		vdd-2p2-ext-supply = <&S6B_EXT>;
+		qcom,vdd-2p2-ext-config = <2200000 2200000 0 0 0>;
 
-		qcom,smem-states = <&smp2p_wlan_1_out 0>,
+		qcom,smem-states = <&chora_wcn7750_smp2p_wlan_1_out 0>,
 				   <&smp2p_wlan_2_out 0>,
 				   <&smp2p_wlan_3_out 0>;
 		qcom,smem-state-names = "wlan-smp2p-out",
@@ -170,7 +172,10 @@
 		qcom,qmp = <&aoss_qmp>;
 		qcom,vreg_ol_cpr ="S3B0";
 
-		 qcom,pdc_init_table =
+		nvmem-cells = <&wcn_info>;
+		nvmem-cell-names = "wcn_info_reg";
+
+		qcom,pdc_init_table =
 			 " {class: wlan_pdc, ss: rf, res: S1B0.v, upval: 1864}",
 			 " {class: wlan_pdc, ss: rf, res: S2B0.v, upval: 1316}",
 			 " {class: wlan_pdc, ss: rf, res: S3B0.v, upval: 1012}",
@@ -178,6 +183,111 @@
 			 " {class: wlan_pdc, ss: rf, res: L3F0.v, enable: 0}",
 			 " {class: wlan_pdc, ss: rf, res: S6B0.m, enable: 1}",
 			 " {class: wlan_pdc, ss: rf, res: S6B0.v, enable: 1}";
+
+		qcom,pdc_init_table_v1 =
+			 " {class: wlan_pdc, ss: rf, res: S1B0.v, upval: 1864}",
+			 " {class: wlan_pdc, ss: rf, res: S2B0.v, upval: 1316}",
+			 " {class: wlan_pdc, ss: rf, res: S3B0.v, upval: 1012}",
+			 " {class: wlan_pdc, ss: rf, res: L3F0.m, enable: 0}",
+			 " {class: wlan_pdc, ss: rf, res: L3F0.v, enable: 0}";
+
+		interconnects =
+		<&pcie_anoc MASTER_PCIE_0 &pcie_anoc SLAVE_ANOC_PCIE_GEM_NOC>,
+		<&gem_noc MASTER_ANOC_PCIE_GEM_NOC &mc_virt SLAVE_EBI1>;
+		interconnect-names = "pcie_to_memnoc", "memnoc_to_ddr";
+
+		qcom,icc-path-count = <2>;
+		qcom,bus-bw-cfg-count = <9>;
+
+		/* ddr_type = 8(LPDDR5) */
+
+		ddr_cfg@0 {
+			ddr_type = <8>;
+
+			qcom,bus-bw-cfg =
+			/** ICC Path 1 **/
+			<0 0>, /* no vote */
+			/* idle: 0-18 Mbps snoc/anoc: 100 Mhz */
+			<2250 676800>,
+			/* low: 18-60 Mbps snoc/anoc: 100 Mhz */
+			<7500 676800>,
+			/* medium: 60-240 Mbps snoc/anoc: 100 Mhz */
+			<30000 676800>,
+			/* high: 240-1200 Mbps snoc/anoc: 100 Mhz */
+			<100000 676800>,
+			/* very high: 1200-2000 Mbps snoc/anoc: 100 Mhz */
+			<250000 676800>,
+			/* ultra high: DBS mode snoc/anoc: 200 Mhz */
+			<312500 1400000>,
+			/* super high: DBS mode snoc/anoc: 403 Mhz */
+			<587500 2412000>,
+			/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz */
+			<7500 1400000>,
+
+			/** ICC Path 2 **/
+			<0 0>,
+			/* idle: 0-18 Mbps ddr: 547.2 MHz */
+			<2250 1997200>,
+			/* low: 18-60 Mbps ddr: 547.2 MHz */
+			<7500 1997200>,
+			/* medium: 60-240 Mbps ddr: 547.2 MHz */
+			<30000 1997200>,
+			/* high: 240-1200 Mbps ddr: 547.2 MHz */
+			<100000 1997200>,
+			/* very high: 1200-2000 Mbps ddr: 547.2 MHz */
+			<250000 1997200>,
+			/* ultra high: DBS mode ddr: 2092 MHz */
+			<312500 7603600>,
+			/* super high: DBS mode ddr: 3.2 GHz */
+			<587500 12025600>,
+			/* low (latency critical): 18-60 Mbps ddr: 547.2 MHz */
+			<7500 1997200>;
+		};
+
+		/* ddr_type = 7(LPDDR4) */
+
+		ddr_cfg@1 {
+			ddr_type = <7>;
+
+			qcom,bus-bw-cfg =
+			/** ICC Path 1 **/
+			<0 0>, /* no vote */
+			/* idle: 0-18 Mbps snoc/anoc: 100 Mhz */
+			<2250 676800>,
+			/* low: 18-60 Mbps snoc/anoc: 100 Mhz */
+			<7500 676800>,
+			/* medium: 60-240 Mbps snoc/anoc: 100 Mhz */
+			<30000 676800>,
+			/* high: 240-1200 Mbps snoc/anoc: 100 Mhz */
+			<100000 676800>,
+			/* very high: 1200-2000 Mbps snoc/anoc: 100 Mhz */
+			<250000 676800>,
+			/* ultra high: DBS mode snoc/anoc: 200 Mhz */
+			<312500 1400000>,
+			/* super high: DBS mode snoc/anoc: 403 Mhz */
+			<587500 2412000>,
+			/* low (latency critical): 18-60 Mbps snoc/anoc: 200 Mhz */
+			<7500 1400000>,
+
+			/** ICC Path 2 **/
+			<0 0>,
+			/* idle: 0-18 Mbps ddr: 547.2 MHz */
+			<2250 1997200>,
+			/* low: 18-60 Mbps ddr: 547.2 MHz */
+			<7500 1997200>,
+			/* medium: 60-240 Mbps ddr: 547.2 MHz */
+			<30000 1997200>,
+			/* high: 240-1200 Mbps ddr: 547.2 MHz */
+			<100000 1997200>,
+			/* very high: 1200-2000 Mbps ddr: 547.2 MHz */
+			<250000 1997200>,
+			/* ultra high: DBS mode ddr: 2092 MHz */
+			<312500 7603600>,
+			/* super high: DBS mode ddr: 2092 MHz */
+			<587500 7603600>,
+			/* low (latency critical): 18-60 Mbps ddr: 547.2 MHz */
+			<7500 1997200>;
+		};
 
 		icnss_cdev_apss: icnss_cdev1 {
 			#cooling-cells = <2>;
@@ -188,8 +298,8 @@
 		};
 
 		qcom,smp2p_map_wlan_1_in {
-			interrupts-extended = <&smp2p_wlan_1_in 0 0>,
-					      <&smp2p_wlan_1_in 1 0>;
+			interrupts-extended = <&chora_wcn7750_smp2p_wlan_1_in 0 0>,
+					      <&chora_wcn7750_smp2p_wlan_1_in 1 0>;
 			interrupt-names = "qcom,smp2p-force-fatal-error",
 					  "qcom,smp2p-early-crash-ind";
 		};
@@ -203,7 +313,6 @@
 			iommu-addresses = <&icnss2 0x0 0x0 0x0 0xb0000000>,
 				<&icnss2 0x0 0xc0000000 0x0 0x40000000>;
 		};
-
 	};
 
 	wlan_direct_link: qcom,icnss-direct-link {

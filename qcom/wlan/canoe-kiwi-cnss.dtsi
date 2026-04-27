@@ -194,6 +194,11 @@
 		 */
 		wlan-txrx-intr-cpumask = <0x3 0x30>;
 	};
+
+	wlan_vendor_wonder: qcom,cnss-vendor-wlan-wonder {
+		compatible = "qcom,cnss-vendor-wlan-wonder";
+		status = "okay";
+	};
 };
 
 &pcie_rp {

@@ -218,6 +218,11 @@
 				<&wlan_direct_link 0x0 0xb0000000 0x0 0x50000000>;
 		};
 	};
+
+	wlan_vendor_wonder: qcom,cnss-vendor-wlan-wonder {
+		compatible = "qcom,cnss-vendor-wlan-wonder";
+		status = "okay";
+	};
 };
 
 &pcie_rp {

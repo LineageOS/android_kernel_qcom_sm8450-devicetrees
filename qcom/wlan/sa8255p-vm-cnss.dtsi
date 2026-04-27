@@ -85,6 +85,8 @@
 			supported-ids = <0x1103>;
 			qcom,sleep-clk-support;
 			qcom,wlan-ramdump-dynamic = <0x420000>;
+			qcom,set-wlaon-pwr-ctrl;
+			qcom,wlaon-pwr-ctrl-otp-supported;
 		};
 
 		chip_cfg@1 {
@@ -95,6 +97,8 @@
 		chip_cfg@2 {
 			supported-ids = <0x1107>;
 			qcom,wlan-ramdump-dynamic = <0x780000>;
+			qcom,set-wlaon-pwr-ctrl;
+			qcom,wlaon-pwr-ctrl-otp-supported;
 		};
 	};
 };

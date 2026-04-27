@@ -46,13 +46,13 @@
 
 &soc {
 	qcom,smp2p-wpss {
-		smp2p_wlan_1_in: qcom,smp2p-wlan-1-in {
+		alor_wcn7750_smp2p_wlan_1_in: qcom,smp2p-wlan-1-in {
 			qcom,entry-name = "wlan";
 			interrupt-controller;
 			#interrupt-cells = <2>;
 		};
 
-		smp2p_wlan_1_out: qcom,smp2p-wlan-1-out {
+		alor_wcn7750_smp2p_wlan_1_out: qcom,smp2p-wlan-1-out {
 			qcom,entry-name = "wlan";
 			#qcom,smem-state-cells = <1>;
 		};
@@ -154,7 +154,7 @@
 		vdd-1.2-io-supply = <&L3D>;
 		qcom,vdd-1.2-io-config = <1200000 1200000 0 0 0>;
 
-		qcom,smem-states = <&smp2p_wlan_1_out 0>,
+		qcom,smem-states = <&alor_wcn7750_smp2p_wlan_1_out 0>,
 				   <&smp2p_wlan_2_out 0>,
 				   <&smp2p_wlan_3_out 0>;
 		qcom,smem-state-names = "wlan-smp2p-out",
@@ -213,8 +213,8 @@
 			<312500 8395000>,
 			/* super high: DBS mode ddr: 3.2 GHz */
 			<587500 13000000>,
-			/* low (latency critical): 18-60 Mbps ddr: 547.2 MHz */
-			<7500 1200000>;
+			/* low (latency critical): 18-60 Mbps ddr: 2092 MHz */
+			<7500 8395000>;
 		};
 
 		icnss_cdev_apss: icnss_cdev1 {
@@ -226,8 +226,8 @@
 		};
 
 		qcom,smp2p_map_wlan_1_in {
-			interrupts-extended = <&smp2p_wlan_1_in 0 0>,
-					      <&smp2p_wlan_1_in 1 0>;
+			interrupts-extended = <&alor_wcn7750_smp2p_wlan_1_in 0 0>,
+					      <&alor_wcn7750_smp2p_wlan_1_in 1 0>;
 			interrupt-names = "qcom,smp2p-force-fatal-error",
 					  "qcom,smp2p-early-crash-ind";
 		};

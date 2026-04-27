@@ -126,17 +126,32 @@
 			#cooling-cells = <2>;
 		};
 	};
+
+	wlan_direct_link: qcom,cnss-direct-link {
+		compatible = "qcom,cnss-direct-link";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		iommus = <&apps_smmu 0x800 0x0>;
+		qcom,iommu-group = <&cnss_pci_iommu_group0>;
+		memory-region = <&direct_link_iommu_region_partition>;
+		dma-coherent;
+
+		direct_link_iommu_region_partition: direct_link_iommu_region_partition {
+			iommu-addresses = <&wlan_direct_link 0x0 0x0 0x0 0xa0000000>,
+				<&wlan_direct_link 0x0 0xb0000000 0x0 0x50000000>;
+		};
+	};
 };
 
 &pcie0_port0 {
+	#address-cells = <3>;
+	#size-cells = <2>;
 	cnss_pci0: cnss_pci0 {
 		reg = <0 0 0 0 0>;
 		qcom,iommu-group = <&cnss_pci_iommu_group0>;
 		memory-region = <&cnss_wlan_mem &cnss_pci0_iommu_region_partition>;
-		#address-cells = <1>;
-		#size-cells = <1>;
 		cnss_pci0_iommu_region_partition: cnss_pci0_iommu_region_partition {
-			/* address-cells =3 size-cells=2 from sdxkova-pcie.dtsi */
+			/* address-cells =3 size-cells=2 from echo.dtsi */
 			iommu-addresses = <&cnss_pci0 0x0 0x0 0x0 0x0 0xA0000000>,
 					  <&cnss_pci0 0x0 0x0 0xB0000000 0x0 0x50000000>;
 		};

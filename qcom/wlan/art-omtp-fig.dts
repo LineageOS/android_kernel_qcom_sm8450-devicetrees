@@ -13,5 +13,6 @@
 	compatible = "qcom,art-omtp", "qcom,art", "qcom,artp-omtp", "qcom,artp",
 			"qcom,omtp";
 	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
-	qcom,board-id = <0x10031 0>;
+	qcom,board-id = <0x10031 0>,
+			<0x10010031 0>;/*LP6 HW*/
 };

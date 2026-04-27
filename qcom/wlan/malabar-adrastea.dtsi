@@ -23,7 +23,7 @@
 
 	icnss: qcom,icnss@c800000 {
 		compatible = "qcom,icnss";
-		reg = <0xc800000 0x800000>;
+		reg = <0x0 0xc800000 0x0 0x800000>;
 		reg-names = "membase";
 		qcom,rproc-handle = <&wpss_pas>;
 		iommus = <&apps_smmu 0xc0 0x1>;
@@ -42,7 +42,7 @@
 
 		qcom,iommu-dma = "fastmap";
 		qcom,iommu-faults = "stall-disable", "HUPCF", "non-fatal";
-		qcom,iommu-geometry = <0xb0000000 0x10010000>;
+		qcom,iommu-geometry = <0x0 0xb0000000 0x0 0x10010000>;
 		memory-region = <&icnss2_iommu_region_partition>;
 		qcom,fw-prefix;
 		qcom,wlan;
@@ -67,8 +67,8 @@
 		};
 
 		icnss2_iommu_region_partition: icnss2_iommu_region_partition {
-			iommu-addresses = <&icnss2 0x00000000 0xb0000000>,
-					<&icnss2 0xc0000000 0x40000000>;
+			iommu-addresses = <&icnss 0x0 0x00000000 0x0 0xb0000000>,
+					<&icnss 0x0 0xc0000000 0x0 0x40000000>;
 		};
 	};
 };
