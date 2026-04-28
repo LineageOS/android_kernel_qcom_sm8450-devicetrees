@@ -16,6 +16,23 @@
       "message": "typo_ed: duplicate",
       "revId": "08ea83269b9226d50e7015f269611c7137007cd5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c059dc3d_d42aa24d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-04-28T19:48:23Z",
+      "side": 1,
+      "message": "This is a legit fix though",
+      "revId": "08ea83269b9226d50e7015f269611c7137007cd5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": [
