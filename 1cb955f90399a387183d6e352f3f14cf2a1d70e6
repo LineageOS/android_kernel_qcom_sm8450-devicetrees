@@ -34,6 +34,23 @@
       "parentUuid": "961206e5_b6031d1a",
       "revId": "1cb955f90399a387183d6e352f3f14cf2a1d70e6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fe54b1_661c8e78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-04-28T19:41:35Z",
+      "side": 1,
+      "message": "Imo, this should not be merged as it causes a divergence to stock and is purely aesthetic.",
+      "revId": "1cb955f90399a387183d6e352f3f14cf2a1d70e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
