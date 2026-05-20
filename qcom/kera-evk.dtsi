@@ -140,6 +140,26 @@
 	qcom,boot-option = <0x1>;
 };
 
+&apps_rsc_drv2 {
+	aqr_vreg: aqr_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "aqr_vreg";
+		gpio = <&expander0 6 GPIO_ACTIVE_HIGH>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+	};
+
+	qep_vreg: qep_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "qep_vreg";
+		gpio = <&expander0 0 GPIO_ACTIVE_HIGH>;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+	};
+};
+
 &qupv3_se4_i2c {
 	status = "ok";
 	expander0: pca953x@38 {
@@ -258,6 +278,35 @@
 		/* BDF 2.3.0 */
 		pcie1_bus2_dev3_fn0: pcie1_bus2_dev3_fn0 {
 			reg = <0x1800 0x0 0x0 0x0 0x0>;
+			qps615_eth0,qps615_eth0@pcie1_rp {
+				reg = <0x0 0x0 0x0 0x0 0x0>;
+				phy-rst-som-gpios = <&expander0 7 GPIO_ACTIVE_HIGH>;
+				qcom,phy-rst-delay-us = <20000>;
+				phy-supply = <&aqr_vreg>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				/* BDF 5.0.0 */
+				qcom,iommu-group = <&eth0_pci_iommu_group>;
+				eth0_pci_iommu_group: eth0_pci_iommu_group {
+					qcom,iommu-dma = "atomic";
+				};
+			};
+
+			qps615_eth1,qps615_eth1@pcie1_rp {
+				reg = <0x100 0x0 0x0 0x0 0x0>;
+				phy-rst-som-gpios = <&expander0 2 GPIO_ACTIVE_HIGH>;
+				qcom,phy-rst-delay-us = <20000>;
+				phy-supply = <&qep_vreg>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				/* BDF 5.0.1 */
+				qcom,iommu-group = <&eth1_pci_iommu_group>;
+				eth1_pci_iommu_group: eth1_pci_iommu_group {
+					qcom,iommu-dma = "atomic";
+				};
+			};
 		};
 	};
 };

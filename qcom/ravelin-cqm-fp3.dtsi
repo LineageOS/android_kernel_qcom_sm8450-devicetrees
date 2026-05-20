@@ -4,8 +4,8 @@
  */
 
 #include "ravelin.dtsi"
+
 / {
-	model = "Qualcomm Technologies, Inc. RavelinP";
-	compatible = "qcom,ravelinp";
-	qcom,msm-id = <602 0x10000>, <774 0x10000>;
+	model = "Qualcomm Technologies, Inc. Ravelin-CQM-FP3 SoC";
+	compatible = "qcom,ravelin";
 };
