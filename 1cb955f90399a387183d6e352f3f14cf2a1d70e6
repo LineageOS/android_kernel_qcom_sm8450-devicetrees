@@ -140,6 +140,24 @@
       "message": "why did you link a repository with random LLM output?\n\nStop using AI to do random stuff. If there\u0027s a real issue, solve it.",
       "revId": "1cb955f90399a387183d6e352f3f14cf2a1d70e6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2081f677_78c1c678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-05-29T12:08:22Z",
+      "side": 1,
+      "message": "how is this commit related to the io-channels issue on ziyi?",
+      "parentUuid": "b9efbd48_464adc0b",
+      "revId": "1cb955f90399a387183d6e352f3f14cf2a1d70e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": [
