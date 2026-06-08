@@ -37,15 +37,183 @@
 	status = "ok";
 };
 
+&soc {
+	touch_panel_extavdd: touch_gpio_regulator@1 {
+		compatible = "qti-regulator-fixed";
+		regulator-name = "touch_panel_extavdd";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 3 0>;
+		enable-active-high;
+		regulator-boot-on;
+		proxy-supply = <&touch_panel_extavdd>;
+		qcom,proxy-consumer-enable;
+		pinctrl-names = "default";
+		pinctrl-0 = <&touch_panel_extavdd_default>;
+	};
+};
+
+&tlmm {
+	pmx_ts_int_default {
+		ts_int_default: ts_int_default {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+			config {
+				drive-strength = <16>;
+				/* bias-pull-up; */   /* Enable if needed */
+				input-enable;
+				bias-disable;
+			};
+		};
+	};
+
+	pmx_ts_gtp_active: pmx_ts_gtp_active {
+		mux {
+			pins = "gpio3";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio3";
+			drive-strength = <8>;    /* 8 mA */
+			bias-disable = <0>;      /* no pull */
+		};
+	};
+
+	pmx_ts_gtp_suspend: pmx_ts_gtp_suspend {
+		mux {
+			pins = "gpio3";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio3";
+			drive-strength = <2>;    /* 2 mA */
+			bias-pull-down;          /* PULL DOWN */
+		};
+	};
+
+	pmx_ts_int_output_high {
+		ts_int_output_high: ts_int_output_high {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+			config {
+				output-high;
+			};
+		};
+	};
+
+	pmx_ts_int_output_low {
+		ts_int_output_low: ts_int_output_low {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+			config {
+				output-low;
+			};
+		};
+	};
+
+	pmx_ts_int_input {
+		ts_int_input: ts_int_input {
+			mux {
+				pins = "gpio13";
+				function = "gpio";
+			};
+
+
+			config {
+				input-enable;
+				/* bias-pull-up; */   /* Good if IRQ floats */
+				bias-disable;
+			};
+		};
+	};
+	/* --- Touch Panel Regulator --- */
+	touch_panel_extavdd_default: touch_panel_extavdd_default {
+		mux {
+			pins = "gpio3";
+			function = "gpio";
+		};
+
+		config {
+			drive-strength = <8>;
+			bias-disable;
+			output-high;
+		};
+	};
+};
+
+&qupv3_se8_i2c {
+	status = "okay";
+	gt9xx-i2c@14 {
+		compatible = "goodix,gt928";
+		reg = <0x14>;
+		status = "okay";
+		interrupt-parent = <&tlmm>;
+		pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
+		pinctrl-0 = <&ts_int_default>;
+		pinctrl-1 = <&ts_int_output_low>;
+		pinctrl-2 = <&ts_int_output_high>;
+		pinctrl-3 = <&ts_int_input>;
+
+		interrupts = <13 0x2800>;
+		reset-gpios = <&tlmm 16 GPIO_ACTIVE_LOW>;
+		irq-gpios   = <&tlmm 13 GPIO_ACTIVE_LOW>;
+		irq-flags = <2>;
+		vdd_ana-supply = <&touch_panel_extavdd>;
+
+		touchscreen-max-id = <11>;
+		touchscreen-size-x = <1080>;
+		touchscreen-size-y = <1920>;
+		touchscreen-max-w  = <1024>;
+		touchscreen-max-p  = <1024>;
+		// touchscreen-key-map = <172>, <158>; /* KEY_HOMEPAGE, KEY_BACK */
+
+		goodix,type-a-report = <0>;
+		goodix,driver-send-cfg = <1>;
+		goodix,create-wr-node = <1>;
+		goodix,wakeup-with-reset = <0>;
+		goodix,resume-in-workqueue = <0>;
+		goodix,int-sync = <1>;
+		goodix,swap-x2y = <0>;
+		goodix,esd-protect = <1>;
+		goodix,pen-suppress-finger = <0>;
+		goodix,auto-update = <0>;
+		goodix,auto-update-cfg = <0>;
+		goodix,power-off-sleep = <0>;
+
+		goodix,cfg-group0 = [
+			42 38 04 80 07 0A 35 00 01 08 32 05 50 3C 03 05 00 00 00 00 00 00 00 18 1A 1E 14 8C 2E 0E
+			32 34 7F 08 00 00 01 BB 02 1D 00 00 00 00 00 03 64 32 00 00 00 23 46 94 C5 02 00 00 00 00
+			A7 25 00 92 2B 00 82 31 00 74 38 00 66 41 00 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+			00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1C 1A 18 16 14 12 10 0E
+			0C 0A 08 06 04 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 04 06 08 0A 0C 0F
+			10 12 13 14 16 2A 29 28 26 24 22 21 20 1F 1E 1D 1C 18 00 00 00 00 00 00 00 00 00 00 00 00
+			00 00 00 00 82 01
+		];
+	};
+};
+
 &qupv3_se8_spi {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	status = "ok";
+	status = "disabled";
 	qcom,touch-active = "goodix,gt9916S";
 	qcom,la-vm;
 
 	goodix-berlin@0 {
+		status = "disabled";
 		compatible = "goodix,gt9916S";
 		reg = <0>;
 		spi-max-frequency = <1000000>;

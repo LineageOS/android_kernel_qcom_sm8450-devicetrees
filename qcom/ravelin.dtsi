@@ -676,7 +676,7 @@
 		dma-names = "rx", "tx";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		status = "ok";
+		status = "disabled";
 	};
 
 	cluster-device {
