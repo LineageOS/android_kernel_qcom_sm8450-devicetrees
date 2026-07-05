@@ -248,7 +248,7 @@ parrot-dtb-$(CONFIG_ARCH_PARROT) += \
 parrot-overlays-dtb-$(CONFIG_ARCH_PARROT) += $(PARROT_BOARDS) $(PARROT_BASE_DTB) $(PARROT_4GB_BOARDS) $(PARROT_4GB_BASE_DTB)
 dtb-y += $(parrot-dtb-y)
 
-RAVELIN_BASE_DTB += ravelin.dtb ravelinp.dtb ravelin-sg.dtb ravelinp-sg.dtb montague.dtb montaguep.dtb montague-qmb.dtb ravelin-cqm-fp1.dtb ravelin-cqm-fp2.dtb ravelin-cqm-fp3.dtb ravelin-cqs-fp1.dtb ravelin-cqs-fp2.dtb ravelin-cqs-fp3.dtb
+RAVELIN_BASE_DTB += ravelin.dtb ravelinp.dtb ravelin-sg.dtb ravelinp-sg.dtb montague.dtb montaguep.dtb montague-qmb.dtb montague-cqm-fp1.dtb montague-cqm-fp2.dtb montague-cqm-fp3.dtb montague-cqs-fp1.dtb montague-cqs-fp2.dtb montague-cqs-fp3.dtb
 RAVELIN_4GB_BASE_DTB += ravelin-4gb.dtb ravelinp-4gb.dtb ravelin-sg.dtb ravelinp-sg.dtb montague-4gb.dtb montaguep-4gb.dtb
 
 RAVELIN_BOARDS += \

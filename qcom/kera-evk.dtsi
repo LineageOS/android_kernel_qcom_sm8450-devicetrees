@@ -309,9 +309,9 @@
 };
 
 &apps_rsc_drv2 {
-	aqr_vreg: aqr_vreg {
+	lgn_vreg: lgn_vreg {
 		compatible = "regulator-fixed";
-		regulator-name = "aqr_vreg";
+		regulator-name = "lgn_vreg";
 		gpio = <&expander0 6 GPIO_ACTIVE_HIGH>;
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
@@ -450,7 +450,7 @@
 				reg = <0x0 0x0 0x0 0x0 0x0>;
 				phy-rst-som-gpios = <&expander0 7 GPIO_ACTIVE_HIGH>;
 				qcom,phy-rst-delay-us = <20000>;
-				phy-supply = <&aqr_vreg>;
+				phy-supply = <&lgn_vreg>;
 				#address-cells = <1>;
 				#size-cells = <1>;
 

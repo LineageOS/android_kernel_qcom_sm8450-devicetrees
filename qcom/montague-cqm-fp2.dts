@@ -5,13 +5,13 @@
 
 /dts-v1/;
 
-#include "ravelin-cqs-fp2.dtsi"
+#include "montague-cqm-fp2.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Ravelin-CQS-FP2 SoC";
-	compatible = "qcom,ravelin";
+	model = "Qualcomm Technologies, Inc. Montague-CQM-FP2 SoC";
+	compatible = "qcom,montague";
 	qcom,board-id = <0 0>;
-	qcom,msm-id = <774 0x10000>;
+	qcom,msm-id = <773 0x10000>;
 	qcom,softsku-id = <2>;
 };
 

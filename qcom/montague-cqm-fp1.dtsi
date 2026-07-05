@@ -3,11 +3,11 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "ravelinp.dtsi"
+#include "montague.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Ravelin-CQS-FP1 SoC";
-	compatible = "qcom,ravelin";
+	model = "Qualcomm Technologies, Inc. Montague-CQM-FP1 SoC";
+	compatible = "qcom,montague";
 	cpus {
 		cpu-map {
 			cluster0 {
@@ -19,7 +19,6 @@
 			};
 		};
 	};
-
 };
 
 &CPU2 {

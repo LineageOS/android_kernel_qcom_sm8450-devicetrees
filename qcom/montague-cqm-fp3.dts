@@ -5,20 +5,20 @@
 
 /dts-v1/;
 
-#include "ravelin-cqm-fp2.dtsi"
+#include "montague-cqm-fp3.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Ravelin-CQM-FP2 SoC";
-	compatible = "qcom,ravelin";
+	model = "Qualcomm Technologies, Inc. Montague-CQM-FP3 SoC";
+	compatible = "qcom,montague";
 	qcom,board-id = <0 0>;
 	qcom,msm-id = <773 0x10000>;
-	qcom,softsku-id = <2>;
+	qcom,softsku-id = <3>;
 };
 
 &pcie0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &pcie0_msi {
-	status = "disabled";
+	status = "okay";
 };

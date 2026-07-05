@@ -3,9 +3,9 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "ravelinp.dtsi"
+#include "montague.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Ravelin-CQS-FP3 SoC";
-	compatible = "qcom,ravelin";
+	model = "Qualcomm Technologies, Inc. Montague-CQM-FP3 SoC";
+	compatible = "qcom,montague";
 };
