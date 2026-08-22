@@ -1923,6 +1923,13 @@
 			};
 		};
 	};
+
+	soc_util: soc-util {
+		compatible = "qcom,soc-util";
+		nvmem-cells = <&logo_orientation>;
+		nvmem-cell-names = "logo-orientation";
+		status = "ok";
+	};
 };
 
 #include "pm5100.dtsi"
