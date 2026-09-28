@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d01933d_7b418b1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2026-09-28T15:43:10Z",
+      "side": 1,
+      "message": "The commit i pushed is the one in sm8450, I pushed using lineagegerrit when I should have just pushed HEAD using git-push-merge-review. Noticed when I checked using gh link and it only had the common history",
+      "revId": "13fe1ba65b42d44c6f501085a516454bfbb11335",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
