@@ -33,6 +33,23 @@
       "message": "I will re-merge and update my chains",
       "revId": "13fe1ba65b42d44c6f501085a516454bfbb11335",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f5ce0fb_f3c526b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-09-28T19:30:38Z",
+      "side": 1,
+      "message": "it works after some changes in the local kernel:\nhttps://review.lineageos.org/c/LineageOS/android_kernel_xiaomi_sm8450-devicetrees/+/504922\nhttps://review.lineageos.org/c/LineageOS/android_kernel_xiaomi_sm8450/+/504923",
+      "revId": "13fe1ba65b42d44c6f501085a516454bfbb11335",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
