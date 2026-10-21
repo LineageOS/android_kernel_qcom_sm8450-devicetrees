@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "162b0a27_9e7ceaca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29415
+      },
+      "writtenOn": "2026-10-21T22:43:13Z",
+      "side": 1,
+      "message": "This needs DT changes, see:\nhttps://review.lineageos.org/c/LineageOS/android_device_osom_ingot/+/506211\nhttps://review.lineageos.org/c/LineageOS/android_device_osom_ingot/+/506212",
+      "revId": "7405871ca105cf781f528b55846bd71a1641f51e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
