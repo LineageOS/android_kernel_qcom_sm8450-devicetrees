@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b737809_3900e4f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37711
+      },
+      "writtenOn": "2026-11-19T10:11:11Z",
+      "side": 1,
+      "message": "Tested on Xiaomi liuqin which is CapeP. Without this commit, the device boots directly into fastboot mode because it fails to locate the corresponding DTB.",
+      "revId": "67a0441b76e4f43cc9b57bee6d3eb9fda98e21a2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
