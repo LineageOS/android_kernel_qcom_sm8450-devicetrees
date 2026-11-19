@@ -1,0 +1,10 @@
+/dts-v1/;
+
+#include "cape.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Cape LTE Only SoC";
+	compatible = "qcom,cape-v2", "qcom,cape";
+	qcom,msm-id = <540 0x10000>;
+	qcom,board-id = <0 0>;
+};
